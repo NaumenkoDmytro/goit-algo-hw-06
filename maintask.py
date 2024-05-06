@@ -36,6 +36,12 @@ class Record:
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
 
 class AddressBook(UserDict):
+
+
+    def add_record(self):
+           pass
+
+
     def find(self):
            pass
     
