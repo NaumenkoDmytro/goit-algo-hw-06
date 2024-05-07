@@ -1,5 +1,6 @@
 from collections import UserDict
 
+
 class Field:
     def __init__(self, value):
         self.value = value
@@ -7,9 +8,11 @@ class Field:
     def __str__(self):
         return str(self.value)
 
+
 class Name(Field):
     # реалізація класу
 		pass
+
 
 class Phone(Field):
     def __init__(self, value):
@@ -17,9 +20,7 @@ class Phone(Field):
             raise ValueError("The number is not valid!")
         super().__init__(value)
 
-                   
-             
-
+                             
 class Record:
     def __init__(self, name):
         self.name = Name(name)
@@ -41,8 +42,6 @@ class Record:
                 break
 
 
-    
-
     def find_phone(self, current_phone):
            for phone in self.phones:
                if current_phone == str(phone):
@@ -52,6 +51,7 @@ class Record:
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
 
+
 class AddressBook(UserDict):
 
 
@@ -59,12 +59,10 @@ class AddressBook(UserDict):
        self.data[record.name.value] = record
            
 
-
     def find(self, name):
            return self.data.get(name)
            
     
-
     def delete(self,name):
        del self.data[name]
 
