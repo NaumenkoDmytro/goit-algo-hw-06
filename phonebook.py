@@ -42,8 +42,8 @@ class Record:
             if phone.value == old_phone:
                 self.phones[idx] = Phone(edited_phone)
                 break
-            else:
-                raise ValueError ('This number does not exist')
+        else:
+            raise ValueError ('This number does not exist')
                 
 
     def find_phone(self, current_phone):
@@ -69,7 +69,10 @@ class AddressBook(UserDict):
            
     
     def delete(self,name):
-        del self.data[name]
+        if name not in self.data:
+            raise KeyError ('Name not found')
+        else:
+            del self.data[name]
 
 
 if __name__ == "__main__":
