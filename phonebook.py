@@ -28,24 +28,29 @@ class Record:
 
 
     def add_phone(self, phone):
-           self.phones.append(Phone(phone))
+        self.phones.append(Phone(phone))
     
 
     def remove_phone(self, phone):
-           self.phones = [p for p in self.phones if p != phone]
+        for p in self.phones:
+            if p == phone:
+                self.phones.remove(p)
            
     
     def edit_phone(self, old_phone, edited_phone):
-        for i, p in enumerate(self.phones):
-            if str(p) == old_phone:
-                self.phones[i] = Phone(edited_phone)
+        for idx, phone in enumerate(self.phones):
+            if phone.value == old_phone:
+                self.phones[idx] = Phone(edited_phone)
                 break
-
+            else:
+                raise ValueError ('This number does not exist')
+                
 
     def find_phone(self, current_phone):
-           for phone in self.phones:
-               if current_phone == str(phone):
-                     return phone  
+        for phone in self.phones:
+            if phone.value == current_phone:
+                return phone
+        return None
 
 
     def __str__(self):
@@ -56,15 +61,15 @@ class AddressBook(UserDict):
 
 
     def add_record(self,record):
-       self.data[record.name.value] = record
+        self.data[record.name.value] = record
            
 
     def find(self, name):
-           return self.data.get(name)
+        return self.data.get(name)
            
     
     def delete(self,name):
-       del self.data[name]
+        del self.data[name]
 
 
 if __name__ == "__main__":
@@ -75,7 +80,7 @@ if __name__ == "__main__":
 
     # Створення запису для John
     john_record = Record("John")
-    john_record.add_phone("123456789012asdf")
+    john_record.add_phone("1234567890")
     john_record.add_phone("5555555555")
 
     # Додавання запису John до адресної книги
